@@ -1,9 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import s from './Card.module.css'
 
-export const Card = ({ title, description, common, date }) => {
+export const Card = ({ id, title, description, common, date }) => {
+  const navigate = useNavigate()
+  const cardInfo = () => {
+    navigate(`/card/${id}`)
+  }
   return (
     <>
-      <div className={s.wrapper}>
+      <div onClick={cardInfo} className={s.wrapper}>
         <div className={s.titleContent}>
           <p className={s.titleText}>{title}</p>{' '}
           {!common && <span className={s.commonTasks}></span>}

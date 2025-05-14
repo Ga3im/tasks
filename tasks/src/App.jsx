@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path={Router.main} element={<Main />}>
             <Route path={Router.createTask} element={<CreateTask />}/>
-            <Route path={Router.card} element={<UserCard/>}/>
+            <Route path={'/card/:cardId'} element={<UserCard/>}/>
           </Route>
           <Route path={Router.register} element={<Register />} />
           <Route path={Router.login} element={<Login />} />

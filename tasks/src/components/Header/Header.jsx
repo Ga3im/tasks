@@ -13,10 +13,14 @@ export const Header = () => {
     navigate(Router.createTask)
   }
 
+  const logo = () => {
+    navigate(Router.main)
+  }
+
   return (
     <>
       <div className={s.wrapper}>
-        <div className={s.logo}>Logo</div>
+        <img onClick={logo} src="/kanban-logo.png" className={s.logo} />
         <button onClick={addTaskButton} className={s.addTask}>
           Добавить задачу
         </button>

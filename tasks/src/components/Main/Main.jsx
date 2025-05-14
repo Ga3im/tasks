@@ -12,11 +12,11 @@ import { getTasks } from '../../services/api'
 export const Main = () => {
   const { commonTasks, myTasks } = useContext(SetContext)
 
-  useEffect(() => {
-    getTasks().then((res) => {
-      console.log(res)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getTasks().then((res) => {
+  //     return console.log(res)
+  //   })
+  // }, [])
 
   return (
     <>
@@ -25,19 +25,35 @@ export const Main = () => {
       <Header />
       <Filter />
       <div className={s.content}>
-        {tasks.map((task) => {
-          return commonTasks === myTasks || commonTasks === task.common ? (
-            <Card
-              key={task.id}
-              title={task.title}
-              description={task.description}
-              common={task.common}
-              date={task.date}
-            />
-          ) : (
-            ''
-          )
-        })}
+        {localStorage.getItem('tasks') !== null
+          ? JSON.parse(localStorage.getItem('tasks')).map((task) => {
+              return commonTasks === myTasks || commonTasks === task.common ? (
+                <Card
+                  id={task.id}
+                  key={task.id}
+                  title={task.title}
+                  description={task.description}
+                  common={task.common}
+                  date={task.date}
+                />
+              ) : (
+                ''
+              )
+            })
+          : tasks.map((task) => {
+              return commonTasks === myTasks || commonTasks === task.common ? (
+                <Card
+                  id={task.id}
+                  key={task.id}
+                  title={task.title}
+                  description={task.description}
+                  common={task.common}
+                  date={task.date}
+                />
+              ) : (
+                ''
+              )
+            })}
       </div>
       <Link to={Router.login}>Логин</Link>
       <Link to={Router.register}>Региcтрация</Link>
