@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 25px;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(215, 208, 208);
+  color: black;
+}
+
+.inputText {
+  padding-bottom: 5px;
+}
+
+.input {
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+.loginbutton{
+      padding: 5px 85px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: greenyellow;
+    margin-top: 20px;
+
+}
+
+.gotoregister {
+  padding-top: 30px;
+}

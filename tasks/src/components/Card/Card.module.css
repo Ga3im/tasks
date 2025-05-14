@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 10px;
+  padding: 20px;
+  width: 250px;
+  height: 150px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.titleContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.commonTasks {
+  content: '';
+  background-color: greenyellow;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.createDate {
+  text-align: end;
+}
