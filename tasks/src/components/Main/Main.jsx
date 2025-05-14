@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { Router } from '../../pages/routes'
 import { Header } from '../Header/Header'
 import s from './Main.module.css'
@@ -20,6 +20,8 @@ export const Main = () => {
 
   return (
     <>
+      <Outlet />
+
       <Header />
       <Filter />
       <div className={s.content}>
