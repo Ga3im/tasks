@@ -1,6 +1,7 @@
 export const Router = {
-  main: "/",
+  main: '/',
   login: '/login',
   register: '/register',
-  notFound: "*",
-};
+  createTask: '/main/create',
+  notFound: '*',
+}
