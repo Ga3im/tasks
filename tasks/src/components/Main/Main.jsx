@@ -73,8 +73,6 @@ export const Main = () => {
                 )
               })}
       </div>
-      <Link to={Router.login}>Логин</Link>
-      <Link to={Router.register}>Региcтрация</Link>
     </>
   )
 }
