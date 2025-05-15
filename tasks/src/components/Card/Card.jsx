@@ -1,9 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 import s from './Card.module.css'
+import { useContext } from 'react'
+import { SetContext } from '../../context/context'
 
 export const Card = ({ id, title, description, common, date }) => {
   const navigate = useNavigate()
+  const { currentTask, setCurrentTask } = useContext(SetContext)
   const cardInfo = () => {
+    setCurrentTask({
+      id: id,
+      title: title,
+      description: description,
+      common: common,
+      date: date,
+    })
     navigate(`/card/${id}`)
   }
   return (

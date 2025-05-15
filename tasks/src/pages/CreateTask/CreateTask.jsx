@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Router } from '../routes'
 import s from './CreateTask.module.css'
 import { useState } from 'react'
 import { tasks } from '../../tasks'
 
-const getDate = () => {
+export const getDate = () => {
   let day = new Date().getDate()
   let month = new Date().getMonth() + 1
   let year = new Date().getFullYear()
@@ -12,6 +12,8 @@ const getDate = () => {
 }
 
 export const CreateTask = () => {
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
   const [newTask, setNewTask] = useState({
     id: tasks.length + 1,
     title: '',
@@ -20,11 +22,22 @@ export const CreateTask = () => {
     date: getDate(),
   })
 
-  const addNewTask = () => {
-    const updatedTasks = JSON.parse(localStorage.getItem('tasks'))
-      ? JSON.parse(localStorage.getItem('tasks'))
-      : tasks
-    localStorage.setItem('tasks', JSON.stringify([...updatedTasks, newTask]))
+  const addNewTask = (e) => {
+    e.preventDefault()
+    if (newTask.title === '') {
+      setError('Введите название задачи')
+    } else if (newTask.description === '') {
+      setError('Введите описание задачи')
+    } else {
+      const updatedTasks = JSON.parse(localStorage.getItem('tasks'))
+        ? JSON.parse(localStorage.getItem('tasks'))
+        : tasks
+      localStorage.setItem('tasks', JSON.stringify([...updatedTasks, newTask]))
+      navigate(Router.main)
+    }
+    setTimeout(() => {
+      setError('')
+    }, 7000)
   }
 
   return (
@@ -53,6 +66,8 @@ export const CreateTask = () => {
             name=""
             id=""
           ></textarea>
+          {error && <p className={s.error}>{error}</p>}
+
           <div className={s.contentBottom}>
             <div className={s.checkboxContent}>
               <input

@@ -14,7 +14,7 @@ export const Main = () => {
   const { filterTask } = useContext(SetContext)
   const [isloading, setIsloading] = useState(false)
   const loadTaskCount = [1, 2, 3, 4, 5, 6, 7]
-  let loadTime = 2 // время загрузки в секундах
+  let loadTime = 1 // время загрузки в секундах
 
   // useEffect(() => {
   //   getTasks().then((res) => {
@@ -28,7 +28,7 @@ export const Main = () => {
     setTimeout(() => {
       setIsloading(false)
     }, loadTime * 1000)
-  }, [])
+  }, [localStorage.getItem('tasks')])
 
   return (
     <>

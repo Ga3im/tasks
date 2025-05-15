@@ -20,8 +20,6 @@ export const Filter = () => {
   const commonTaskChecked = () => {
     if (filterTask.myTasks !== false) {
       setFilterTask({ ...filterTask, commonTasks: !filterTask.commonTasks })
-      console.log(filterTask.commonTasks)
-
       localStorage.setItem(
         'filter',
         JSON.stringify({ ...filterTask, commonTasks: filterTask.commonTasks }),

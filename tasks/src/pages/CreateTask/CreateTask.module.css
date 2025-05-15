@@ -16,7 +16,7 @@
 
 .content {
   width: 500px;
-  height: 400px;
+  height: 430px;
   border: none;
   border-radius: 10px;
   padding: 20px;
@@ -89,6 +89,12 @@
   border-radius: 100%;
 }
 
+.error {
+  color: red;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
 .addButton {
   padding: 5px;
   border: none;
@@ -98,6 +104,6 @@
   transition: all 0.3s;
 }
 
-.addButton:hover{
+.addButton:hover {
   transform: scale(1.05);
 }
