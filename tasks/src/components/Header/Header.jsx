@@ -1,20 +1,34 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import s from './Header.module.css'
 import { useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
+import { SetContext } from '../../context/context'
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState()
   const navigate = useNavigate()
-  const openMenu = () => {
-    setIsOpen(!isOpen)
+  const { isAuth, setIsAuth } = useContext(SetContext)
+
+  const logo = () => {
+    navigate(Router.main)
   }
+
   const addTaskButton = () => {
     navigate(Router.createTask)
   }
 
-  const logo = () => {
-    navigate(Router.main)
+  const openMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const authButton = () => {
+    if (isAuth) {
+      setIsAuth(false)
+      localStorage.removeItem('user')
+    } else {
+      setIsAuth(true)
+      navigate(Router.login)
+    }
   }
 
   return (
@@ -37,7 +51,9 @@ export const Header = () => {
             <input className={s.checkbox} readOnly type="checkbox" />
           </div>
           <p>Профиль</p>
-          <p> Вход</p>
+          <p className={s.authButton} onClick={authButton}>
+            {isAuth ? 'Выйти' : 'Войти'}{' '}
+          </p>
         </div>
       )}
     </>

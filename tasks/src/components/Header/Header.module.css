@@ -106,3 +106,7 @@
   background-color: blue;
   transition: 0.5s;
 }
+
+.authButton{
+  cursor: pointer;
+}

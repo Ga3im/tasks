@@ -1,23 +1,34 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import s from './Filter.module.css'
-import { SetContext } from '../../../context/context'
+import { SetContext } from '../../context/context'
 
 export const Filter = () => {
-  const { commonTasks, setCommonTasks, myTasks, setMyTasks } =
-    useContext(SetContext)
+  const { filterTask, setFilterTask } = useContext(SetContext)
 
   const myTaskChecked = () => {
-    if (commonTasks !== false) {
-      setMyTasks(!myTasks)
+    if (filterTask.commonTasks !== false) {
+      setFilterTask({ ...filterTask, myTasks: !filterTask.myTasks })
+
+      console.log(filterTask.myTasks)
+      localStorage.setItem(
+        'filter',
+        JSON.stringify({ ...filterTask, myTasks: filterTask.myTasks }),
+      )
     }
   }
 
   const commonTaskChecked = () => {
-    if (myTasks !== false) {
-      setCommonTasks(!commonTasks)
+    if (filterTask.myTasks !== false) {
+      setFilterTask({ ...filterTask, commonTasks: !filterTask.commonTasks })
+      console.log(filterTask.commonTasks)
+
+      localStorage.setItem(
+        'filter',
+        JSON.stringify({ ...filterTask, commonTasks: filterTask.commonTasks }),
+      )
     }
   }
-  
+
   return (
     <div className={s.filter}>
       <div onClick={myTaskChecked} className={s.item}>
@@ -25,7 +36,7 @@ export const Filter = () => {
           className={s.checkbox}
           type="checkbox"
           readOnly
-          checked={myTasks}
+          checked={filterTask.myTasks}
         />
         <p>Мои задачи</p>
       </div>
@@ -34,7 +45,7 @@ export const Filter = () => {
           className={s.checkbox}
           type="checkbox"
           readOnly
-          checked={commonTasks}
+          checked={filterTask.commonTasks}
         />
         <p>Общие задачи</p>
       </div>
