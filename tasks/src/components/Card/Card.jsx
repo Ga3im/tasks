@@ -5,7 +5,7 @@ import { SetContext } from '../../context/context'
 
 export const Card = ({ id, title, description, common, date }) => {
   const navigate = useNavigate()
-  const { currentTask, setCurrentTask } = useContext(SetContext)
+  const { isDarkTheme, setCurrentTask } = useContext(SetContext)
   const cardInfo = () => {
     setCurrentTask({
       id: id,
@@ -18,7 +18,7 @@ export const Card = ({ id, title, description, common, date }) => {
   }
   return (
     <>
-      <div onClick={cardInfo} className={s.wrapper}>
+      <div onClick={cardInfo} className={isDarkTheme ? s.wrapperDark :s.wrapper}>
         <div className={s.titleContent}>
           <p className={s.titleText}>{title}</p>{' '}
           {!common && <span className={s.commonTasks}></span>}

@@ -10,6 +10,7 @@ export const SettingProvider = ({ children }) => {
     commonTasks: false,
   })
   const [isAuth, setIsAuth] = useState(false)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [currentTask, setCurrentTask] = useState({
     id: '',
     title: '',
@@ -31,9 +32,17 @@ export const SettingProvider = ({ children }) => {
     }
   }, [isAuth, tasks])
 
+  useEffect(() => {
+    if (localStorage.getItem('theme')) {
+      setIsDarkTheme(localStorage.getItem('theme'))
+    }
+  }, [])
+
   return (
     <SetContext.Provider
       value={{
+        isDarkTheme,
+        setIsDarkTheme,
         filterTask,
         setFilterTask,
         isAuth,

@@ -8,8 +8,6 @@ export const Filter = () => {
   const myTaskChecked = () => {
     if (filterTask.commonTasks !== false) {
       setFilterTask({ ...filterTask, myTasks: !filterTask.myTasks })
-
-      console.log(filterTask.myTasks)
       localStorage.setItem(
         'filter',
         JSON.stringify({ ...filterTask, myTasks: filterTask.myTasks }),

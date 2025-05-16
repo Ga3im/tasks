@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Router } from '../routes'
 import s from './CreateTask.module.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { tasks } from '../../tasks'
+import { SetContext } from '../../context/context'
 
 export const getDate = () => {
   let day = new Date().getDate()
@@ -21,6 +22,7 @@ export const CreateTask = () => {
     common: false,
     date: getDate(),
   })
+  const { isDarkTheme } = useContext(SetContext)
 
   const addNewTask = (e) => {
     e.preventDefault()
@@ -43,17 +45,23 @@ export const CreateTask = () => {
   return (
     <>
       <div className={s.wrapper}>
-        <form onSubmit={addNewTask} className={s.content}>
+        <form
+          onSubmit={addNewTask}
+          className={isDarkTheme ? s.contentDark : s.content}
+        >
           <div className={s.contentTop}>
             <h1>Создание задачи</h1>
 
-            <Link to={Router.main} className={s.closeWindow}>
+            <Link
+              to={Router.main}
+              className={isDarkTheme ? s.closeWindowDark : s.closeWindow}
+            >
               &#10006;
             </Link>
           </div>
           <p>Наименование задачи</p>
           <input
-            className={s.taskInput}
+            className={isDarkTheme ? s.taskInputDark : s.taskInput}
             onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
             type="text"
           />
@@ -62,7 +70,7 @@ export const CreateTask = () => {
             onChange={(e) =>
               setNewTask({ ...newTask, description: e.target.value })
             }
-            className={s.textarea}
+            className={isDarkTheme ? s.textareaDark : s.textarea}
             name=""
             id=""
           ></textarea>
