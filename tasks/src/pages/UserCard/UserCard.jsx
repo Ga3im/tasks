@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import s from './UserCard.module.css'
 import { Router } from '../routes'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { SetContext } from '../../context/context'
 import { getDate } from '../CreateTask/CreateTask'
 
@@ -10,7 +10,7 @@ export const UserCard = () => {
   const arr = JSON.parse(localStorage.getItem('tasks'))
   const navigate = useNavigate()
   const { cardId } = useParams()
-  const { currentTask, setCurrentTask } = useContext(SetContext)
+  const { currentTask, setCurrentTask, isDarkTheme } = useContext(SetContext)
 
   const editTask = () => {
     setIsEdit(true)
@@ -42,10 +42,10 @@ export const UserCard = () => {
   return (
     <>
       <div className={s.wrapper}>
-        <div className={s.content}>
+        <div className={isDarkTheme ? s.contentDark : s.content}>
           <div className={s.contentTop}>
             <h1>Информация</h1>
-            <Link to={Router.main} className={s.closeWindow}>
+            <Link to={Router.main} className={isDarkTheme ? s.closeWindowDark :s.closeWindow}>
               &#10006;
             </Link>
           </div>
@@ -56,7 +56,7 @@ export const UserCard = () => {
             onChange={(e) =>
               setCurrentTask({ ...currentTask, title: e.target.value })
             }
-            className={s.taskInput}
+            className={isDarkTheme ? s.taskInputDark : s.taskInput}
             type="text"
           />
           <p>Описание задачи</p>
@@ -66,7 +66,7 @@ export const UserCard = () => {
             onChange={(e) =>
               setCurrentTask({ ...currentTask, description: e.target.value })
             }
-            className={s.textarea}
+            className={isDarkTheme ? s.textareaDark : s.textarea}
             name=""
             id=""
           ></textarea>

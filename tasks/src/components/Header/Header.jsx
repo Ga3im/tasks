@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import s from './Header.module.css'
 import { useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
@@ -7,7 +7,8 @@ import { SetContext } from '../../context/context'
 export const Header = () => {
   const [isOpen, setIsOpen] = useState()
   const navigate = useNavigate()
-  const { isAuth, setIsAuth } = useContext(SetContext)
+  const { isAuth, setIsAuth, isDarkTheme, setIsDarkTheme } =
+    useContext(SetContext)
 
   const logo = () => {
     navigate(Router.main)
@@ -31,9 +32,13 @@ export const Header = () => {
     }
   }
 
+  useEffect(() => {
+    localStorage.setItem('theme', isDarkTheme)
+  }, [isDarkTheme])
+
   return (
     <>
-      <div className={s.wrapper}>
+      <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
         <img onClick={logo} src="/kanban-logo.png" className={s.logo} />
         <button onClick={addTaskButton} className={s.addTask}>
           Добавить задачу
@@ -48,7 +53,12 @@ export const Header = () => {
         <div className={s.menu}>
           <div className={s.darkTheme}>
             Темный режим{' '}
-            <input className={s.checkbox} readOnly type="checkbox" />
+            <input
+              className={s.checkbox}
+              onChange={(e) => setIsDarkTheme(e.target.checked)}
+              type="checkbox"
+              checked={isDarkTheme}
+            />
           </div>
           <p>Профиль</p>
           <p className={s.authButton} onClick={authButton}>

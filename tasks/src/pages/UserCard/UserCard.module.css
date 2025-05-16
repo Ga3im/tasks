@@ -16,6 +16,19 @@
   padding: 20px;
   background: rgb(181 181 181);
   font-size: 18px;
+  box-shadow: 0px 0px 50px -20px white;
+}
+
+.contentDark {
+  width: 600px;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background: rgb(0, 0, 0);
+  font-size: 18px;
+  color: #ffffff;
+  box-shadow: 0px 0px 50px -20px white;
 }
 
 .contentTop {
@@ -29,6 +42,11 @@
   color: black;
 }
 
+.closeWindowDark {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
 .taskInput {
   border: none;
   width: 280px;
@@ -37,6 +55,18 @@
   padding: 5px 20px 5px 10px;
   font-size: 16px;
   margin-bottom: 10px;
+  background: #ffffff;
+}
+
+.taskInputDark {
+  border: none;
+  width: 280px;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 5px 20px 5px 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background: #757575;
 }
 
 .textarea {
@@ -47,6 +77,19 @@
   resize: none;
   border: none;
   border-radius: 10px;
+  background: #ffffff;
+  padding: 5px 10px;
+}
+
+.textareaDark {
+  width: 280px;
+  height: 150px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  resize: none;
+  border: none;
+  border-radius: 10px;
+  background: #757575;
   padding: 5px 10px;
 }
 

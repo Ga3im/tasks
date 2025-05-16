@@ -11,7 +11,7 @@ import { SetContext } from '../../context/context'
 import { getTasks } from '../../services/api'
 
 export const Main = () => {
-  const { filterTask } = useContext(SetContext)
+  const { filterTask, isDarkTheme } = useContext(SetContext)
   const [isloading, setIsloading] = useState(false)
   const loadTaskCount = [1, 2, 3, 4, 5, 6, 7]
   let loadTime = 1 // время загрузки в секундах
@@ -32,46 +32,48 @@ export const Main = () => {
 
   return (
     <>
-      <Outlet />
+      <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
+        <Outlet />
 
-      <Header />
-      <Filter />
-      <div className={s.content}>
-        {isloading
-          ? loadTaskCount.map((i) => {
-              return <LoadCard key={i} />
-            })
-          : localStorage.getItem('tasks') !== null
-            ? JSON.parse(localStorage.getItem('tasks')).map((task) => {
-                return filterTask.commonTasks === filterTask.myTasks ||
-                  filterTask.commonTasks === task.common ? (
-                  <Card
-                    id={task.id}
-                    key={task.id}
-                    title={task.title}
-                    description={task.description}
-                    common={task.common}
-                    date={task.date}
-                  />
-                ) : (
-                  ''
-                )
+        <Header />
+        <Filter />
+        <div className={s.content}>
+          {isloading
+            ? loadTaskCount.map((i) => {
+                return <LoadCard key={i} />
               })
-            : tasks.map((task) => {
-                return filterTask.commonTasks === filterTask.myTasks ||
-                  filterTask.commonTasks === task.common ? (
-                  <Card
-                    id={task.id}
-                    key={task.id}
-                    title={task.title}
-                    description={task.description}
-                    common={task.common}
-                    date={task.date}
-                  />
-                ) : (
-                  ''
-                )
-              })}
+            : localStorage.getItem('tasks') !== null
+              ? JSON.parse(localStorage.getItem('tasks')).map((task) => {
+                  return filterTask.commonTasks === filterTask.myTasks ||
+                    filterTask.commonTasks === task.common ? (
+                    <Card
+                      id={task.id}
+                      key={task.id}
+                      title={task.title}
+                      description={task.description}
+                      common={task.common}
+                      date={task.date}
+                    />
+                  ) : (
+                    ''
+                  )
+                })
+              : tasks.map((task) => {
+                  return filterTask.commonTasks === filterTask.myTasks ||
+                    filterTask.commonTasks === task.common ? (
+                    <Card
+                      id={task.id}
+                      key={task.id}
+                      title={task.title}
+                      description={task.description}
+                      common={task.common}
+                      date={task.date}
+                    />
+                  ) : (
+                    ''
+                  )
+                })}
+        </div>
       </div>
     </>
   )
