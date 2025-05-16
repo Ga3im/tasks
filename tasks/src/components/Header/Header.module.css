@@ -117,6 +117,14 @@
   transition: 0.5s;
 }
 
+.userInfo{
+  cursor: pointer;
+}
+
+.archive{
+  cursor: pointer;
+}
+
 .authButton{
   cursor: pointer;
 }
