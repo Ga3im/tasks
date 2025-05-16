@@ -6,21 +6,14 @@ import { Card } from '../Card/Card'
 import { Filter } from '../Filter/Filter'
 import { LoadCard } from '../LoadCard/LoadCard'
 import { tasks } from '../../tasks'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { SetContext } from '../../context/context'
-import { getTasks } from '../../services/api'
 
 export const Main = () => {
   const { filterTask, isDarkTheme } = useContext(SetContext)
   const [isloading, setIsloading] = useState(false)
   const loadTaskCount = [1, 2, 3, 4, 5, 6, 7]
   let loadTime = 1 // время загрузки в секундах
-
-  // useEffect(() => {
-  //   getTasks().then((res) => {
-  //     return console.log(res)
-  //   })
-  // }, [])
 
   useEffect(() => {
     setIsloading(true)
@@ -32,7 +25,9 @@ export const Main = () => {
 
   return (
     <>
-      <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
+      <div
+        className={isDarkTheme ? s.wrapperDark : s.wrapper}
+      >
         <Outlet />
 
         <Header />

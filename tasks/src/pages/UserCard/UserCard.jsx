@@ -45,7 +45,10 @@ export const UserCard = () => {
         <div className={isDarkTheme ? s.contentDark : s.content}>
           <div className={s.contentTop}>
             <h1>Информация</h1>
-            <Link to={Router.main} className={isDarkTheme ? s.closeWindowDark :s.closeWindow}>
+            <Link
+              to={Router.main}
+              className={isDarkTheme ? s.closeWindowDark : s.closeWindow}
+            >
               &#10006;
             </Link>
           </div>
@@ -128,16 +131,22 @@ export const UserCard = () => {
                 <button onClick={saveEdittedTask} className={s.addButton}>
                   Сохранить
                 </button>
-                <button onClick={cancelEdit} className={s.addButton}>
+                <button onClick={cancelEdit} className={s.cancelButton}>
                   Отменить
                 </button>
               </>
             ) : (
-              <button onClick={editTask} className={s.addButton}>
-                Редактировать
-              </button>
+              <>
+                <button onClick={editTask} className={s.editButton}>
+                  Редактировать
+                </button>
+                <button className={s.addButton}>
+                  Выполнено
+                </button>
+              </>
             )}
-            <button onClick={deleteTask} className={s.addButton}>
+
+            <button onClick={deleteTask} className={s.delButton}>
               Удалить
             </button>
           </div>

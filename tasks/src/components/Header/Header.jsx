@@ -5,8 +5,9 @@ import { Router } from '../../pages/routes'
 import { SetContext } from '../../context/context'
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState()
   const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState()
+
   const { isAuth, setIsAuth, isDarkTheme, setIsDarkTheme } =
     useContext(SetContext)
 
@@ -18,7 +19,8 @@ export const Header = () => {
     navigate(Router.createTask)
   }
 
-  const openMenu = () => {
+  const openMenu = (e) => {
+    e.stopPropagation()
     setIsOpen(!isOpen)
   }
 
@@ -60,7 +62,8 @@ export const Header = () => {
               checked={isDarkTheme}
             />
           </div>
-          <p>Профиль</p>
+          <p className={s.userInfo}>Профиль</p>
+          <p className={s.archive}>Архив</p>
           <p className={s.authButton} onClick={authButton}>
             {isAuth ? 'Выйти' : 'Войти'}{' '}
           </p>
