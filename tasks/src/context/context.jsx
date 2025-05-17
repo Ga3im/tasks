@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Router } from '../pages/routes'
-import { tasks } from '../tasks'
+import { tasksArray } from '../tasks'
 
 export const SetContext = createContext(null)
 export const SettingProvider = ({ children }) => {
@@ -18,6 +18,11 @@ export const SettingProvider = ({ children }) => {
     common: false,
     date: '',
   })
+  const [tasks, setTasks] = useState(
+    localStorage.getItem('tasks')
+      ? JSON.parse(localStorage.getItem('tasks'))
+      : tasksArray,
+  )
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,9 +43,17 @@ export const SettingProvider = ({ children }) => {
     }
   }, [])
 
+  const updateTask = (newTasks) => {
+    localStorage.setItem('tasks', JSON.stringify(newTasks))
+    setTasks(newTasks)
+  }
+
   return (
     <SetContext.Provider
       value={{
+        tasks,
+        setTasks,
+        updateTask,
         isDarkTheme,
         setIsDarkTheme,
         filterTask,
