@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { data, Link, useNavigate, useParams } from 'react-router-dom'
 import s from './UserCard.module.css'
 import { Router } from '../routes'
 import { useContext, useState } from 'react'
@@ -7,10 +7,10 @@ import { getDate } from '../CreateTask/CreateTask'
 
 export const UserCard = () => {
   const [isEdit, setIsEdit] = useState(false)
-  const arr = JSON.parse(localStorage.getItem('tasks'))
   const navigate = useNavigate()
   const { cardId } = useParams()
-  const { currentTask, setCurrentTask, isDarkTheme } = useContext(SetContext)
+  const { currentTask, setCurrentTask, isDarkTheme, tasks, updateTask } =
+    useContext(SetContext)
 
   const editTask = () => {
     setIsEdit(true)
@@ -18,12 +18,11 @@ export const UserCard = () => {
 
   const saveEdittedTask = () => {
     setIsEdit(false)
-    setCurrentTask({ ...currentTask, date: getDate() })
-    setCurrentTask({ ...currentTask, id: cardId })
-    const edittedArr = arr.map((item) =>
+    setCurrentTask({ ...currentTask, id: cardId, date: getDate() })
+    const edittedArr = tasks.map((item) =>
       item.id === currentTask.id ? currentTask : item,
     )
-    localStorage.setItem('tasks', JSON.stringify(edittedArr))
+    updateTask(edittedArr)
     navigate(Router.main)
   }
 
@@ -33,9 +32,8 @@ export const UserCard = () => {
 
   const deleteTask = (e) => {
     e.preventDefault()
-    const newArr = arr.filter((item) => item.id !== currentTask.id)
-    console.log(newArr)
-    localStorage.setItem('tasks', JSON.stringify(newArr))
+    const newArr = tasks.filter((item) => item.id !== currentTask.id)
+    updateTask(newArr)
     navigate(Router.main)
   }
 
@@ -140,9 +138,7 @@ export const UserCard = () => {
                 <button onClick={editTask} className={s.editButton}>
                   Редактировать
                 </button>
-                <button className={s.addButton}>
-                  Выполнено
-                </button>
+                <button className={s.addButton}>Выполнено</button>
               </>
             )}
 

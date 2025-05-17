@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Router } from '../routes'
 import s from './CreateTask.module.css'
 import { useContext, useState } from 'react'
-import { tasks } from '../../tasks'
 import { SetContext } from '../../context/context'
 
 export const getDate = () => {
@@ -15,6 +14,8 @@ export const getDate = () => {
 export const CreateTask = () => {
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const { isDarkTheme, tasks, updateTask } = useContext(SetContext)
+
   const [newTask, setNewTask] = useState({
     id: tasks.length + 1,
     title: '',
@@ -22,7 +23,6 @@ export const CreateTask = () => {
     common: false,
     date: getDate(),
   })
-  const { isDarkTheme } = useContext(SetContext)
 
   const addNewTask = (e) => {
     e.preventDefault()
@@ -31,10 +31,7 @@ export const CreateTask = () => {
     } else if (newTask.description === '') {
       setError('Введите описание задачи')
     } else {
-      const updatedTasks = JSON.parse(localStorage.getItem('tasks'))
-        ? JSON.parse(localStorage.getItem('tasks'))
-        : tasks
-      localStorage.setItem('tasks', JSON.stringify([...updatedTasks, newTask]))
+      updateTask([...tasks, newTask])
       navigate(Router.main)
     }
     setTimeout(() => {

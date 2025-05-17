@@ -2,10 +2,10 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from './pages/Login/Login'
 import { Register } from './pages/Register/Register'
 import { Router } from './pages/routes'
-import { Main } from './components/Main/Main'
 import { SettingProvider } from './context/context'
 import { CreateTask } from './pages/CreateTask/CreateTask'
 import { UserCard } from './pages/UserCard/UserCard'
+import { Main } from './pages/Main/Main'
 
 function App() {
   return (

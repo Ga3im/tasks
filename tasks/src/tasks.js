@@ -1,4 +1,4 @@
-export const tasks = [
+export const tasksArray = [
   {
     id: 1,
     title: 'Питание',
