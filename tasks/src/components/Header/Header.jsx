@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import s from './Header.module.css'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
 import { SetContext } from '../../context/context'
 
@@ -8,11 +8,21 @@ export const Header = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState()
 
-  const { isAuth, setIsAuth, isDarkTheme, setIsDarkTheme } =
-    useContext(SetContext)
+  const {
+    isAuth,
+    setIsAuth,
+    isDarkTheme,
+    setIsDarkTheme,
+    isArchive,
+    setIsArchive,
+  } = useContext(SetContext)
+  
+  useEffect(() => {
+    localStorage.setItem('theme', isDarkTheme)
+  }, [isDarkTheme])
 
   const logo = () => {
-    navigate(Router.main)
+    navigate(Router.cards)
   }
 
   const addTaskButton = () => {
@@ -34,9 +44,15 @@ export const Header = () => {
     }
   }
 
-  useEffect(() => {
-    localStorage.setItem('theme', isDarkTheme)
-  }, [isDarkTheme])
+  const gotoArchive = () => {
+    if (isArchive) {
+      navigate(Router.archive)
+      setIsArchive(false)
+    } else {
+      navigate(Router.cards)
+      setIsArchive(true)
+    }
+  }
 
   return (
     <>
@@ -63,7 +79,10 @@ export const Header = () => {
             />
           </div>
           <p className={s.userInfo}>Профиль</p>
-          <p className={s.archive}>Архив</p>
+          <p className={s.archive} onClick={gotoArchive}>
+            {' '}
+            {isArchive ? 'На главную ' : 'Архив'}
+          </p>
           <p className={s.authButton} onClick={authButton}>
             {isAuth ? 'Выйти' : 'Войти'}{' '}
           </p>

@@ -1,33 +1,36 @@
 import { useContext, useEffect } from 'react'
-import s from './Archive.module.css'
+import { Card } from '../../components/Card/Card'
 import { SetContext } from '../../context/context'
 import { loadTaskCount, loadTime } from '../Main/Main'
-import { Outlet } from 'react-router-dom'
-import { Card } from '../../components/Card/Card'
+import s from './Cards.module.css'
 import { LoadCard } from '../../components/LoadCard/LoadCard'
+import { Outlet } from 'react-router-dom'
 
-export const Archive = () => {
-  const { archiveTasks, isDarkTheme, isloading, setIsloading } =
-    useContext(SetContext)
+export const Cards = () => {
+  const { filterTask, isloading, setIsloading, isDarkTheme, tasks } = useContext(SetContext)
 
   useEffect(() => {
     // загрузка задач
+
     setIsloading(true)
     setTimeout(() => {
       setIsloading(false)
     }, loadTime * 1000)
-  }, [archiveTasks])
+  }, [tasks])
 
   return (
     <>
-      <h1 className={isDarkTheme ? s.titleDark : s.title}>Архив</h1>
+    <Outlet/>
+      <h1 className={isDarkTheme ? s.titleDark : s.title}>Задачи</h1>
+
       <div className={s.content}>
         {isloading
           ? loadTaskCount.map((i) => {
               return <LoadCard key={i} />
             })
-          : archiveTasks.map((task) => {
-              return (
+          : tasks.map((task) => {
+              return filterTask.commonTasks === filterTask.myTasks ||
+                filterTask.commonTasks === task.common ? (
                 <Card
                   id={task.id}
                   key={task.id}
@@ -36,10 +39,11 @@ export const Archive = () => {
                   common={task.common}
                   date={task.date}
                 />
+              ) : (
+                ''
               )
             })}
       </div>
-      <Outlet />
     </>
   )
 }

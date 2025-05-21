@@ -23,7 +23,7 @@ export const Register = () => {
     } else if (user.password === '') {
       setError('Введите пароль')
     } else {
-      navigate(Router.main)
+      navigate(Router.cards)
     }
     setTimeout(() => {
       setError('')

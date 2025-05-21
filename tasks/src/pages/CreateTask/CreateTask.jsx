@@ -32,7 +32,7 @@ export const CreateTask = () => {
       setError('Введите описание задачи')
     } else {
       updateTask([...tasks, newTask])
-      navigate(Router.main)
+      navigate(Router.cards)
     }
     setTimeout(() => {
       setError('')
@@ -50,7 +50,7 @@ export const CreateTask = () => {
             <h1>Создание задачи</h1>
 
             <Link
-              to={Router.main}
+              to={Router.cards}
               className={isDarkTheme ? s.closeWindowDark : s.closeWindow}
             >
               &#10006;

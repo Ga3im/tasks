@@ -9,8 +9,14 @@ export const UserCard = () => {
   const [isEdit, setIsEdit] = useState(false)
   const navigate = useNavigate()
   const { cardId } = useParams()
-  const { currentTask, setCurrentTask, isDarkTheme, tasks, updateTask } =
-    useContext(SetContext)
+  const {
+    currentTask,
+    setCurrentTask,
+    isDarkTheme,
+    tasks,
+    updateTask,
+    updateArchiveTasks,
+  } = useContext(SetContext)
 
   const editTask = () => {
     setIsEdit(true)
@@ -23,7 +29,7 @@ export const UserCard = () => {
       item.id === currentTask.id ? currentTask : item,
     )
     updateTask(edittedArr)
-    navigate(Router.main)
+    navigate(Router.cards)
   }
 
   const cancelEdit = () => {
@@ -34,7 +40,11 @@ export const UserCard = () => {
     e.preventDefault()
     const newArr = tasks.filter((item) => item.id !== currentTask.id)
     updateTask(newArr)
-    navigate(Router.main)
+    navigate(Router.cards)
+  }
+
+  const comletedTask = () => {
+    updateArchiveTasks(currentTask)
   }
 
   return (
@@ -44,7 +54,7 @@ export const UserCard = () => {
           <div className={s.contentTop}>
             <h1>Информация</h1>
             <Link
-              to={Router.main}
+              to={Router.cards}
               className={isDarkTheme ? s.closeWindowDark : s.closeWindow}
             >
               &#10006;
@@ -138,7 +148,9 @@ export const UserCard = () => {
                 <button onClick={editTask} className={s.editButton}>
                   Редактировать
                 </button>
-                <button className={s.addButton}>Выполнено</button>
+                <button onClick={comletedTask} className={s.addButton}>
+                  Выполнено
+                </button>
               </>
             )}
 

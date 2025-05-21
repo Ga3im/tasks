@@ -11,6 +11,7 @@ export const SettingProvider = ({ children }) => {
   })
   const [isAuth, setIsAuth] = useState(false)
   const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [isArchive, setIsArchive] = useState(false)
   const [currentTask, setCurrentTask] = useState({
     id: '',
     title: '',
@@ -18,6 +19,13 @@ export const SettingProvider = ({ children }) => {
     common: false,
     date: '',
   })
+  const [isloading, setIsloading] = useState(false)
+
+  const [archiveTasks, setArchiveTasks] = useState(
+    localStorage.getItem('archiveTasks')
+      ? JSON.parse(localStorage.getItem('archiveTasks'))
+      : [],
+  )
   const [tasks, setTasks] = useState(
     localStorage.getItem('tasks')
       ? JSON.parse(localStorage.getItem('tasks'))
@@ -48,6 +56,12 @@ export const SettingProvider = ({ children }) => {
     setTasks(newTasks)
   }
 
+  const updateArchiveTasks = (newTask) => {
+    const arr = [...archiveTasks, newTask]
+    localStorage.setItem('archiveTasks', JSON.stringify(arr))
+    setArchiveTasks(arr)
+  }
+
   return (
     <SetContext.Provider
       value={{
@@ -62,6 +76,12 @@ export const SettingProvider = ({ children }) => {
         setIsAuth,
         currentTask,
         setCurrentTask,
+        archiveTasks,
+        updateArchiveTasks,
+        isloading,
+        setIsloading,
+        isArchive,
+        setIsArchive,
       }}
     >
       {children}

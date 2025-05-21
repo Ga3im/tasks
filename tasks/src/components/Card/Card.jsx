@@ -14,7 +14,7 @@ export const Card = ({ id, title, description, common, date }) => {
       common: common,
       date: date,
     })
-    navigate(`/card/${id}`)
+    navigate(`/main/tasks/${id}`)
   }
   return (
     <>
