@@ -2,16 +2,17 @@ import { useContext, useEffect } from 'react'
 import s from './Archive.module.css'
 import { SetContext } from '../../context/context'
 import { loadTaskCount, loadTime } from '../Main/Main'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { Card } from '../../components/Card/Card'
 import { LoadCard } from '../../components/LoadCard/LoadCard'
+import { Router } from '../routes'
 
 export const Archive = () => {
   const { archiveTasks, isDarkTheme, isloading, setIsloading } =
     useContext(SetContext)
 
+  // загрузка задач
   useEffect(() => {
-    // загрузка задач
     setIsloading(true)
     setTimeout(() => {
       setIsloading(false)
@@ -20,6 +21,7 @@ export const Archive = () => {
 
   return (
     <>
+      <Link to={Router.cards} className={isDarkTheme ? s.backButtonDark : s.backButton}> Назад</Link>
       <h1 className={isDarkTheme ? s.titleDark : s.title}>Архив</h1>
       <div className={s.content}>
         {isloading

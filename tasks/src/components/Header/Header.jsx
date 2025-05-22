@@ -16,7 +16,7 @@ export const Header = () => {
     isArchive,
     setIsArchive,
   } = useContext(SetContext)
-  
+
   useEffect(() => {
     localStorage.setItem('theme', isDarkTheme)
   }, [isDarkTheme])
@@ -46,10 +46,10 @@ export const Header = () => {
 
   const gotoArchive = () => {
     if (isArchive) {
-      navigate(Router.archive)
+      navigate(Router.cards)
       setIsArchive(false)
     } else {
-      navigate(Router.cards)
+      navigate(Router.archive)
       setIsArchive(true)
     }
   }

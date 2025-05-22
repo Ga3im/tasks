@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
-  padding-bottom: 200px;
+  top: 0px;
 }
 
 .contentTop {
@@ -29,6 +29,7 @@
 
 .contentDark {
   width: 500px;
+  position: fixed;
   height: 430px;
   box-shadow: 0px 0px 50px -20px white;
   border: none;

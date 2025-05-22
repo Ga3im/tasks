@@ -113,7 +113,7 @@ export const UserCard = () => {
                 </div>
               </>
             ) : currentTask.common ? (
-              <div className={s.checkboxContent}>
+              <div className={s.checkboxContentReadOnly}>
                 <input
                   className={s.checkbox}
                   checked
@@ -123,7 +123,7 @@ export const UserCard = () => {
                 <p>Общая задача</p>
               </div>
             ) : (
-              <div className={s.checkboxContent}>
+              <div className={s.checkboxContentReadOnly}>
                 <input
                   className={s.checkbox}
                   checked

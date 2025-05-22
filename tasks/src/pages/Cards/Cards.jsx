@@ -9,9 +9,8 @@ import { Outlet } from 'react-router-dom'
 export const Cards = () => {
   const { filterTask, isloading, setIsloading, isDarkTheme, tasks } = useContext(SetContext)
 
+  // загрузка задач
   useEffect(() => {
-    // загрузка задач
-
     setIsloading(true)
     setTimeout(() => {
       setIsloading(false)
@@ -20,7 +19,7 @@ export const Cards = () => {
 
   return (
     <>
-    <Outlet/>
+      <Outlet />
       <h1 className={isDarkTheme ? s.titleDark : s.title}>Задачи</h1>
 
       <div className={s.content}>

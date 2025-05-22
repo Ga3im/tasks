@@ -8,6 +8,7 @@ import { UserCard } from './pages/UserCard/UserCard'
 import { Main } from './pages/Main/Main'
 import { Archive } from './pages/Archive/Archive'
 import { Cards } from './pages/Cards/Cards'
+import { UserPage } from './pages/UserPage/UserPage'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path={Router.createTask} element={<CreateTask />} />
             </Route>
           </Route>
+          <Route path={Router.profile} element={<UserPage />} />
           <Route path={Router.register} element={<Register />} />
           <Route path={Router.login} element={<Login />} />
         </Routes>
