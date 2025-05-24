@@ -5,9 +5,11 @@ import { loadTaskCount, loadTime } from '../Main/Main'
 import s from './Cards.module.css'
 import { LoadCard } from '../../components/LoadCard/LoadCard'
 import { Outlet } from 'react-router-dom'
+import { Filter } from '../../components/Filter/Filter'
 
 export const Cards = () => {
-  const { filterTask, isloading, setIsloading, isDarkTheme, tasks } = useContext(SetContext)
+  const { filterTask, isloading, setIsloading, isDarkTheme, tasks } =
+    useContext(SetContext)
 
   // загрузка задач
   useEffect(() => {
@@ -19,6 +21,8 @@ export const Cards = () => {
 
   return (
     <>
+      <Filter />
+
       <Outlet />
       <h1 className={isDarkTheme ? s.titleDark : s.title}>Задачи</h1>
 

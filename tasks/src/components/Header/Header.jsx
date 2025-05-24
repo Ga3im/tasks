@@ -78,7 +78,9 @@ export const Header = () => {
               checked={isDarkTheme}
             />
           </div>
-          <p className={s.userInfo}>Профиль</p>
+          <Link to={Router.profile} className={s.userInfo}>
+            Профиль
+          </Link>
           <p className={s.archive} onClick={gotoArchive}>
             {' '}
             {isArchive ? 'На главную ' : 'Архив'}

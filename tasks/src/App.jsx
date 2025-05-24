@@ -16,13 +16,13 @@ function App() {
       <SettingProvider>
         <Routes>
           <Route path={Router.main} element={<Main />}>
+            <Route path={Router.profile} element={<UserPage />} />
             <Route path={Router.archive} element={<Archive />} />
             <Route path={Router.cards} element={<Cards />}>
               <Route path={'/main/tasks/:cardId'} element={<UserCard />} />
               <Route path={Router.createTask} element={<CreateTask />} />
             </Route>
           </Route>
-          <Route path={Router.profile} element={<UserPage />} />
           <Route path={Router.register} element={<Register />} />
           <Route path={Router.login} element={<Login />} />
         </Routes>

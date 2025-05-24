@@ -118,7 +118,8 @@
 }
 
 .userInfo {
-  cursor: pointer;
+  text-decoration: none;
+  color: #000;
   transition: all 0.3s;
 }
 .userInfo:hover {

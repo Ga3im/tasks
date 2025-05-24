@@ -22,7 +22,6 @@ export const Main = () => {
     <>
       <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
         <Header />
-        <Filter />
         <Outlet />
       </div>
     </>
