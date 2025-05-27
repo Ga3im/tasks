@@ -23,7 +23,7 @@ export const Login = () => {
     } else {
       localStorage.setItem('user', JSON.stringify(user))
       setIsAuth(true)
-      navigate(Router.main)
+      navigate(Router.cards)
     }
     setTimeout(() => {
       setError('')

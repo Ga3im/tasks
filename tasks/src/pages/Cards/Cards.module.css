@@ -1,0 +1,28 @@
+.title {
+  color: #000;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.titleDark {
+  color: white;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: #93928f;
+}
+
+.wrapperDark {
+  width: 100%;
+  height: 100%;
+  background: #363635;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}

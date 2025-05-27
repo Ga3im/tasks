@@ -117,14 +117,27 @@
   transition: 0.5s;
 }
 
-.userInfo{
-  cursor: pointer;
+.userInfo {
+  text-decoration: none;
+  color: #000;
+  transition: all 0.3s;
+}
+.userInfo:hover {
+  transform: scale(1.05);
 }
 
-.archive{
+.archive {
   cursor: pointer;
+  transition: all 0.3s;
+}
+.archive:hover {
+  transform: scale(1.05);
 }
 
-.authButton{
+.authButton {
   cursor: pointer;
+  transition: all 0.3s;
+}
+.authButton:hover {
+  transform: scale(1.05);
 }

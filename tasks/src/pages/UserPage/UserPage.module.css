@@ -1,0 +1,99 @@
+.title {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 50px;
+
+  padding: 50px 120px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftContent {
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lastName {
+  display: flex;
+}
+
+.inputText {
+  padding-left: 10px;
+}
+
+.lastNameInput {
+  z-index: -1;
+  background: none;
+  border: none;
+  width: fit-content;
+  white-space: nowrap;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.lastNameInput:focus {
+  outline: none;
+}
+
+.lastNameBtn {
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.lastNameBtn:hover {
+  border-bottom: solid;
+  transform: scale(1.05);
+}
+
+.dateInput {
+  background: none;
+  border: none;
+  text-align: end;
+  width: fit-content;
+  font-size: 20px;
+}
+.dateBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dateBtn:hover {
+  border-bottom: solid;
+  transform: scale(1.05);
+}
+
+.userImage {
+  background: #d0d0d0;
+  margin-bottom: 30px;
+  width: 250px;
+  height: 370px;
+  border-radius: 5px;
+}
+
+.contentAboutMe {
+  display: flex;
+  font-size: 20px;
+}
+.textarea {
+  width: 700px;
+  height: 200px;
+  resize: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+}

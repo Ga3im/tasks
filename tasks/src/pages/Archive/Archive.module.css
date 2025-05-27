@@ -1,0 +1,70 @@
+.backButton {
+  position: absolute;
+  height: 45px;
+  display: flex;
+  font-size: 24px;
+  padding-left: 30px;
+  color: #fff;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.backButton:hover {
+  transform: scale(1.05);
+}
+.backButton::before {
+  content: '\003C \003C  ';
+  padding-right: 10px;
+  color: #fff;
+}
+
+.backButtonDark {
+  position: absolute;
+  text-decoration: none;
+  height: 45px;
+  display: flex;
+  font-size: 24px;
+  padding-left: 30px;
+  color: #fff;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.backButtonDark:hover {
+  transform: scale(1.05);
+}
+.backButtonDark::before {
+  content: '\003C \003C  ';
+  padding-right: 10px;
+  color: #fff;
+}
+
+.title {
+  color: #fff;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.titleDark {
+  color: white;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: #93928f;
+}
+
+.wrapperDark {
+  width: 100%;
+  height: 100%;
+  background: #363635;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
