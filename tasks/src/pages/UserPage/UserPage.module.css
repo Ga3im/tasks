@@ -6,7 +6,6 @@
 .wrapper {
   width: 100%;
   padding: 50px;
-
   padding: 50px 120px;
 }
 
@@ -76,17 +75,100 @@
   transform: scale(1.05);
 }
 
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.btnLoadImg {
+  display: flex;
+  gap: 4px;
+  transition: all 0.3s;
+  position: relative;
+  top: 15px;
+  right: 10px;
+}
+.btnLoadImg:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+
+  .btnLoadItems {
+    box-shadow: 0px 0px 6px 1px white;
+  }
+}
+
+.btnLoadItems {
+  width: 4px;
+  height: 4px;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: #94a6be;
+}
+
+.imgInfo {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  top: 185px;
+  border-radius: 5px;
+  position: relative;
+  height: 65px;
+  background-color: white;
+  position: absolute;
+  padding: 10px;
+}
+
+.addImg{
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.addImg:hover{
+  transform: scale(1.05);
+}
+
 .userImage {
+  background: #d0d0d0;
+  margin-bottom: 30px;
+  max-width: 250px;
+  max-height: 370px;
+  border-radius: 5px;
+}
+.userImageBg {
   background: #d0d0d0;
   margin-bottom: 30px;
   width: 250px;
   height: 370px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.headImg {
+  width: 80px;
+  height: 80px;
+  background-color: #94a6be;
+  border-radius: 100%;
+}
+.bodyImg {
+  border: 80px solid transparent;
+  border-top: 80px solid #94a6be;
+  border-radius: 100%;
+  border-right: 80px solid #94a6be;
+  rotate: -45deg;
+}
+
+.inputLoadImg {
+  display: none;
 }
 
 .contentAboutMe {
   display: flex;
   font-size: 20px;
+  padding-top: 50px;
 }
 .textarea {
   width: 700px;

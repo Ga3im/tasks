@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import s from './UserPage.module.css'
-import FileUploadComponent from '../../components/Img/Img'
 
 export const UserPage = () => {
+  const [isOpenImgInfo, setIsOpenImgInfo] = useState(false)
   const [img, setImg] = useState(null)
   const [file, setFile] = useState(null)
   const [inputText, setInputText] = useState(
@@ -151,7 +151,14 @@ export const UserPage = () => {
     }
   }
 
-  console.log(img)
+  const openImgEditor = () => {
+    setIsOpenImgInfo(!isOpenImgInfo)
+  }
+
+  const deleteAvatar = () => {
+    setImg(null)
+  }
+
   return (
     <>
       <h1 className={s.title}>Профиль</h1>
@@ -265,11 +272,49 @@ export const UserPage = () => {
           </div>
 
           <div className={s.rightContent}>
-            {/* <FileUploadComponent /> */}
-            {img}
-            <input type="file" onChange={changeImage} />
+            <div>
+              <div onClick={openImgEditor} className={s.btnLoadImg}>
+                <div className={s.btnLoadItems}></div>
+                <div className={s.btnLoadItems}></div>
+                <div className={s.btnLoadItems}></div>
+              </div>
+              {isOpenImgInfo && (
+                <div className={s.imgInfo}>
+                  {img ? (
+                    <label for="fileUpload" className={s.addImg}>
+                      Сменить фото
+                    </label>
+                  ) : (
+                    <label for="fileUpload" className={s.addImg}>
+                      Добавить фото
+                    </label>
+                  )}
+
+                  <p onClick={deleteAvatar} className={s.addImg}>
+                    Удалить
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {img ? (
+              <img className={s.userImage} src={img} />
+            ) : (
+              <div className={s.userImageBg}>
+                <div className={s.headImg}></div>
+                <div className={s.bodyImg}></div>
+              </div>
+            )}
+
+            <input
+              id="fileUpload"
+              className={s.inputLoadImg}
+              type="file"
+              onChange={changeImage}
+            />
           </div>
         </div>
+
         <div className={s.contentAboutMe}>
           <p>О себе:</p>
           <textarea
