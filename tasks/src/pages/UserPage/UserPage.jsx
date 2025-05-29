@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import s from './UserPage.module.css'
+import { useOutsideClick } from '../../hooks/useClickOutside'
 
 export const UserPage = () => {
   const [isOpenImgInfo, setIsOpenImgInfo] = useState(false)
@@ -25,6 +26,7 @@ export const UserPage = () => {
     email: false,
   })
 
+  const modalRef = useRef()
   const lastInputRef = useRef()
   const nameInputRef = useRef()
   const patronymicInputRef = useRef()
@@ -155,9 +157,22 @@ export const UserPage = () => {
     setIsOpenImgInfo(!isOpenImgInfo)
   }
 
+  const labelInitiator = () => {
+    setTimeout(() => {
+      setIsOpenImgInfo(false)
+    }, 500)
+  }
+
+  const closeImageMenu = () => {
+    setIsOpenImgInfo(false)
+  }
+
   const deleteAvatar = () => {
     setImg(null)
+    setIsOpenImgInfo(false)
   }
+
+  useOutsideClick(modalRef, closeImageMenu)
 
   return (
     <>
@@ -279,20 +294,31 @@ export const UserPage = () => {
                 <div className={s.btnLoadItems}></div>
               </div>
               {isOpenImgInfo && (
-                <div className={s.imgInfo}>
+                <div ref={modalRef} className={s.imgInfo}>
                   {img ? (
-                    <label for="fileUpload" className={s.addImg}>
+                    <label
+                      onClick={labelInitiator}
+                      for="fileUpload"
+                      className={s.addImg}
+                    >
                       Сменить фото
                     </label>
                   ) : (
-                    <label for="fileUpload" className={s.addImg}>
+                    <label
+                      onClick={labelInitiator}
+                      for="fileUpload"
+                      className={s.addImg}
+                    >
                       Добавить фото
                     </label>
                   )}
-
-                  <p onClick={deleteAvatar} className={s.addImg}>
-                    Удалить
-                  </p>
+                  {img ? (
+                    <p onClick={deleteAvatar} className={s.addImg}>
+                      Удалить
+                    </p>
+                  ) : (
+                    ''
+                  )}
                 </div>
               )}
             </div>

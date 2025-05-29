@@ -1,11 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import s from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
 import { SetContext } from '../../context/context'
+import { useOutsideClick } from '../../hooks/useClickOutside'
 
 export const Header = () => {
   const navigate = useNavigate()
+  const menuRef = useRef()
+  const openMenuRef = useRef()
   const [isOpen, setIsOpen] = useState()
 
   const {
@@ -44,6 +47,13 @@ export const Header = () => {
     }
   }
 
+  const gotoProfile = () => {
+    navigate(Router.profile)
+    setTimeout(() => {
+      setIsOpen(false)
+    }, 500)
+  }
+
   const gotoArchive = () => {
     if (isArchive) {
       navigate(Router.cards)
@@ -54,6 +64,12 @@ export const Header = () => {
     }
   }
 
+  const closeMenu = () => {
+      setIsOpen(false)
+  }
+
+  useOutsideClick(menuRef, closeMenu)
+
   return (
     <>
       <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
@@ -61,14 +77,14 @@ export const Header = () => {
         <button onClick={addTaskButton} className={s.addTask}>
           Добавить задачу
         </button>
-        <nav className={s.navbutton} onClick={openMenu}>
+        <nav className={s.navbutton} onClick={openMenu} ref={openMenuRef}>
           <div className={s.navitems}></div>
           <div className={s.navitems}></div>
           <div className={s.navitems}></div>
         </nav>
       </div>
       {isOpen && (
-        <div className={s.menu}>
+        <div ref={menuRef} className={s.menu}>
           <div className={s.darkTheme}>
             Темный режим{' '}
             <input
@@ -78,9 +94,9 @@ export const Header = () => {
               checked={isDarkTheme}
             />
           </div>
-          <Link to={Router.profile} className={s.userInfo}>
+          <p onClick={gotoProfile} className={s.userInfo}>
             Профиль
-          </Link>
+          </p>
           <p className={s.archive} onClick={gotoArchive}>
             {' '}
             {isArchive ? 'На главную ' : 'Архив'}
