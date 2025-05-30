@@ -2,11 +2,22 @@
   text-align: center;
   padding-top: 20px;
 }
+.titleDark {
+  text-align: center;
+  padding-top: 20px;
+  color: #fff;
+}
 
 .wrapper {
   width: 100%;
   padding: 50px;
   padding: 50px 120px;
+}
+.wrapperDark {
+  width: 100%;
+  padding: 50px;
+  padding: 50px 120px;
+  color: #fff;
 }
 
 .content {
@@ -57,6 +68,19 @@
   transform: scale(1.05);
 }
 
+.lastNameBtnDark {
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #fff;
+}
+.lastNameBtnDark:hover {
+  border-bottom: solid;
+  transform: scale(1.05);
+}
+
 .dateInput {
   background: none;
   border: none;
@@ -64,6 +88,16 @@
   width: fit-content;
   font-size: 20px;
 }
+
+.dateInputDark {
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: end;
+  width: fit-content;
+  font-size: 20px;
+}
+
 .dateBtn {
   background: none;
   border: none;
@@ -114,17 +148,29 @@
   top: 185px;
   border-radius: 5px;
   position: relative;
-  height: 65px;
   background-color: white;
   position: absolute;
   padding: 10px;
 }
 
-.addImg{
+.imgInfoDark {
+  background: black;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  top: 185px;
+  border-radius: 5px;
+  position: relative;
+  position: absolute;
+  padding: 10px;
+}
+
+.addImg {
   cursor: pointer;
   transition: all 0.3s;
 }
-.addImg:hover{
+.addImg:hover {
   transform: scale(1.05);
 }
 
@@ -137,6 +183,18 @@
 }
 .userImageBg {
   background: #d0d0d0;
+  margin-bottom: 30px;
+  width: 250px;
+  height: 370px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.userImgBgDark {
+  background: #7a7a7a;
   margin-bottom: 30px;
   width: 250px;
   height: 370px;
@@ -174,6 +232,19 @@
   width: 700px;
   height: 200px;
   resize: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  background-color: #d0d0d0;
+}
+
+.textareaDark {
+  width: 700px;
+  height: 200px;
+  resize: none;
+  background-color: rgb(138, 138, 138);
+  color: #fff;
   font-size: 18px;
   border-radius: 5px;
   padding: 5px;
