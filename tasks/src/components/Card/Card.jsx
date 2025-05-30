@@ -16,12 +16,14 @@ export const Card = ({ id, title, description, common, date }) => {
     })
     navigate(`/main/tasks/${id}`)
   }
+
+
   return (
     <>
       <div onClick={cardInfo} className={isDarkTheme ? s.wrapperDark :s.wrapper}>
         <div className={s.titleContent}>
           <p className={s.titleText}>{title}</p>{' '}
-          {!common && <span className={s.commonTasks}></span>}
+          {common && <span title='Общая задача' className={s.commonTasks}></span>}
         </div>
         <p className={s.description}>{description}</p>
         <p className={s.createDate}>{date}</p>

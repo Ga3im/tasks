@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import s from './UserPage.module.css'
 import { useOutsideClick } from '../../hooks/useClickOutside'
+import { SetContext } from '../../context/context'
 
 export const UserPage = () => {
   const [isOpenImgInfo, setIsOpenImgInfo] = useState(false)
+  const { isDarkTheme } = useContext(SetContext)
   const [img, setImg] = useState(null)
-  const [file, setFile] = useState(null)
   const [inputText, setInputText] = useState(
     localStorage.getItem('userInfo')
       ? JSON.parse(localStorage.getItem('userInfo'))
@@ -176,9 +177,9 @@ export const UserPage = () => {
 
   return (
     <>
-      <h1 className={s.title}>Профиль</h1>
+      <h1 className={isDarkTheme ? s.titleDark : s.title}>Профиль</h1>
 
-      <div className={s.wrapper}>
+      <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
         <div className={s.content}>
           <div className={s.leftContent}>
             <div className={s.lastName}>
@@ -189,7 +190,10 @@ export const UserPage = () => {
                   ✔️
                 </button>
               ) : (
-                <button onClick={editLastName} className={s.lastNameBtn}>
+                <button
+                  onClick={editLastName}
+                  className={isDarkTheme ? s.lastNameBtnDark : s.lastNameBtn}
+                >
                   🖋
                 </button>
               )}
@@ -210,7 +214,10 @@ export const UserPage = () => {
                   ✔️
                 </button>
               ) : (
-                <button onClick={editName} className={s.lastNameBtn}>
+                <button
+                  onClick={editName}
+                  className={isDarkTheme ? s.lastNameBtnDark : s.lastNameBtn}
+                >
                   🖋
                 </button>
               )}
@@ -231,7 +238,10 @@ export const UserPage = () => {
                   ✔️
                 </button>
               ) : (
-                <button onClick={editPatronymic} className={s.lastNameBtn}>
+                <button
+                  onClick={editPatronymic}
+                  className={isDarkTheme ? s.lastNameBtnDark : s.lastNameBtn}
+                >
                   🖋
                 </button>
               )}
@@ -249,7 +259,7 @@ export const UserPage = () => {
               <input
                 ref={dateofbirthInputRef}
                 readOnly={!isEdit.dateofbirth}
-                className={s.dateInput}
+                className={isDarkTheme ? s.dateInputDark : s.dateInput}
                 type="date"
                 onChange={changeDateofbirthText}
               />
@@ -258,7 +268,10 @@ export const UserPage = () => {
                   ✔️
                 </button>
               ) : (
-                <button onClick={editDateofbirth} className={s.dateBtn}>
+                <button
+                  onClick={editDateofbirth}
+                  className={isDarkTheme ? s.lastNameBtnDark : s.lastNameBtn}
+                >
                   🖋
                 </button>
               )}
@@ -272,7 +285,10 @@ export const UserPage = () => {
                   ✔️
                 </button>
               ) : (
-                <button onClick={editEmail} className={s.lastNameBtn}>
+                <button
+                  onClick={editEmail}
+                  className={isDarkTheme ? s.lastNameBtnDark : s.lastNameBtn}
+                >
                   🖋
                 </button>
               )}
@@ -294,7 +310,10 @@ export const UserPage = () => {
                 <div className={s.btnLoadItems}></div>
               </div>
               {isOpenImgInfo && (
-                <div ref={modalRef} className={s.imgInfo}>
+                <div
+                  ref={modalRef}
+                  className={isDarkTheme ? s.imgInfoDark : s.imgInfo}
+                >
                   {img ? (
                     <label
                       onClick={labelInitiator}
@@ -326,7 +345,7 @@ export const UserPage = () => {
             {img ? (
               <img className={s.userImage} src={img} />
             ) : (
-              <div className={s.userImageBg}>
+              <div className={isDarkTheme ? s.userImgBgDark : s.userImageBg}>
                 <div className={s.headImg}></div>
                 <div className={s.bodyImg}></div>
               </div>
@@ -344,7 +363,7 @@ export const UserPage = () => {
         <div className={s.contentAboutMe}>
           <p>О себе:</p>
           <textarea
-            className={s.textarea}
+            className={isDarkTheme ? s.textareaDark : s.textarea}
             onChange={editAboutMe}
             name=""
             id=""
