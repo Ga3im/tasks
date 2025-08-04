@@ -10,6 +10,7 @@ export const SettingProvider = ({ children }) => {
     commonTasks: false,
   })
   const [isAuth, setIsAuth] = useState(false)
+  const [search, setSearch] = useState('')
   const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [isArchive, setIsArchive] = useState(false)
   const [currentTask, setCurrentTask] = useState({
@@ -31,6 +32,7 @@ export const SettingProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem('tasks'))
       : tasksArray,
   )
+  const [initialTasks, setInitialTasks] = useState(tasksArray)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -82,6 +84,10 @@ export const SettingProvider = ({ children }) => {
         setIsloading,
         isArchive,
         setIsArchive,
+        search,
+        setSearch,
+        initialTasks,
+        setInitialTasks,
       }}
     >
       {children}

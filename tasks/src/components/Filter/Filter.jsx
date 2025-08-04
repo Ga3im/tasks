@@ -1,9 +1,32 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import s from './Filter.module.css'
 import { SetContext } from '../../context/context'
 
 export const Filter = () => {
-  const { filterTask, setFilterTask } = useContext(SetContext)
+  const { filterTask, setFilterTask, setSearch, initialTasks, setTasks } =
+    useContext(SetContext)
+  const [isOpen, setIsOpen] = useState('')
+
+  const handleSearch = () => {
+    const filteredTasks = []
+    tasks.map((i) => {
+      if (i.title.toLowerCase().includes(search.toLowerCase())) {
+        filteredTasks.push(i)
+        setTasks(filteredTasks)
+      }
+      if (search === '') {
+        setTasks(initialTasks)
+      }
+    })
+  }
+
+  const handleOpenFilter = () => {
+    if (isOpen === 'open') {
+      setIsOpen('close')
+    } else {
+      setIsOpen('open')
+    }
+  }
 
   const myTaskChecked = () => {
     if (filterTask.commonTasks !== false) {
@@ -27,23 +50,45 @@ export const Filter = () => {
 
   return (
     <div className={s.filter}>
-      <div onClick={myTaskChecked} className={s.item}>
+      <div className={s.topContent}>
+      <form className={s.searchContent} type="submit" action="">
         <input
-          className={s.checkbox}
-          type="checkbox"
-          readOnly
-          checked={filterTask.myTasks}
+          className={s.search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Искать..."
         />
-        <p>Мои задачи</p>
+        <button className={s.searchBtn} onSubmit={handleSearch}>
+          Поиск
+        </button>
+      </form>
+      <div onClick={handleOpenFilter} className={s.openFilter}></div>
       </div>
-      <div className={s.item} onClick={commonTaskChecked}>
-        <input
-          className={s.checkbox}
-          type="checkbox"
-          readOnly
-          checked={filterTask.commonTasks}
-        />
-        <p>Общие задачи</p>
+      <div
+        className={`${isOpen === 'open' ? s.modalOpen : isOpen === 'close' ? s.modalClose : s.filterContent}`}
+      >
+        {isOpen === 'open' && (
+          <div className={s.itemContent}> 
+            <div onClick={myTaskChecked} className={s.item}>
+              <input
+                className={s.checkbox}
+                type="checkbox"
+                readOnly
+                checked={filterTask.myTasks}
+              />
+              <p>Мои задачи</p>
+            </div>
+            <div className={s.item} onClick={commonTaskChecked}>
+              <input
+                className={s.checkbox}
+                type="checkbox"
+                readOnly
+                checked={filterTask.commonTasks}
+              />
+              <p>Общие задачи</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

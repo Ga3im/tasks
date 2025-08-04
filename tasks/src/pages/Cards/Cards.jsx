@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Card } from '../../components/Card/Card'
 import { SetContext } from '../../context/context'
 import { loadTaskCount, loadTime } from '../Main/Main'
@@ -8,8 +8,16 @@ import { Outlet } from 'react-router-dom'
 import { Filter } from '../../components/Filter/Filter'
 
 export const Cards = () => {
-  const { filterTask, isloading, setIsloading, isDarkTheme, tasks } =
-    useContext(SetContext)
+  const {
+    search,
+    filterTask,
+    isloading,
+    setIsloading,
+    isDarkTheme,
+    tasks,
+    setTasks,
+    initialTasks,
+  } = useContext(SetContext)
 
   // загрузка задач
   useEffect(() => {
@@ -19,10 +27,22 @@ export const Cards = () => {
     }, loadTime * 1000)
   }, [tasks])
 
+  useEffect(() => {
+    const filteredTasks = []
+    tasks.map((i) => {
+      if (i.title.toLowerCase().includes(search.toLowerCase())) {
+        filteredTasks.push(i)
+        setTasks(filteredTasks)
+      }
+      if (search === '') {
+        setTasks(initialTasks)
+      }
+    })
+  }, [search])
+
   return (
     <>
       <Filter />
-
       <Outlet />
       <h1 className={isDarkTheme ? s.titleDark : s.title}>Задачи</h1>
 

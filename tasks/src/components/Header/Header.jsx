@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import s from './Header.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
 import { SetContext } from '../../context/context'
 
@@ -75,14 +75,10 @@ export const Header = () => {
               className={s.checkbox}
               onChange={(e) => setIsDarkTheme(e.target.checked)}
               type="checkbox"
-              checked={isDarkTheme}
+              checked={isDarkTheme ? true : false}
             />
           </div>
-          <Link to={Router.profile} className={s.userInfo}>
-            Профиль
-          </Link>
           <p className={s.archive} onClick={gotoArchive}>
-            {' '}
             {isArchive ? 'На главную ' : 'Архив'}
           </p>
           <p className={s.authButton} onClick={authButton}>
