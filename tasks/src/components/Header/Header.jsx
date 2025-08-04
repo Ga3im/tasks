@@ -9,6 +9,7 @@ export const Header = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState()
   const menuRef = useRef(null)
+  const btnRef = useRef(null)
 
   const {
     isAuth,
@@ -60,7 +61,7 @@ export const Header = () => {
     setIsOpen(false)
   }
 
-  useOutsideClick(menuRef, closeMenu)
+  useOutsideClick(menuRef, btnRef, closeMenu)
 
   return (
     <>
@@ -69,7 +70,7 @@ export const Header = () => {
         <button onClick={addTaskButton} className={s.addTask}>
           Добавить задачу
         </button>
-        <nav className={s.navbutton} onClick={openMenu}>
+        <nav ref={btnRef} className={s.navbutton} onClick={openMenu}>
           <div className={s.navitems}></div>
           <div className={s.navitems}></div>
           <div className={s.navitems}></div>
