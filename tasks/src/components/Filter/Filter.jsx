@@ -51,24 +51,27 @@ export const Filter = () => {
   return (
     <div className={s.filter}>
       <div className={s.topContent}>
-      <form className={s.searchContent} type="submit" action="">
-        <input
-          className={s.search}
-          onChange={(e) => setSearch(e.target.value)}
-          type="text"
-          placeholder="Искать..."
-        />
-        <button className={s.searchBtn} onSubmit={handleSearch}>
-          Поиск
-        </button>
-      </form>
-      <div onClick={handleOpenFilter} className={s.openFilter}></div>
+        <form className={s.searchContent} type="submit" action="">
+          <input
+            className={s.search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="Искать..."
+          />
+          <button className={s.searchBtn} onSubmit={handleSearch}>
+            Поиск
+          </button>
+        </form>
+        <div
+          onClick={handleOpenFilter}
+          className={isOpen === 'open' ? s.openFilterActive : s.openFilter}
+        ></div>
       </div>
       <div
         className={`${isOpen === 'open' ? s.modalOpen : isOpen === 'close' ? s.modalClose : s.filterContent}`}
       >
         {isOpen === 'open' && (
-          <div className={s.itemContent}> 
+          <div className={s.itemContent}>
             <div onClick={myTaskChecked} className={s.item}>
               <input
                 className={s.checkbox}

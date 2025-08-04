@@ -71,6 +71,17 @@
   cursor: pointer;
 }
 
+.openFilterActive {
+  width: 15px;
+  height: 15px;
+  rotate: 225deg;
+  border-bottom: solid 2px;
+  border-right: solid 2px;
+}
+.openFilterActive:hover {
+  cursor: pointer;
+}
+
 .modalOpen {
   animation-name: filterOpening;
   animation-duration: 0.3s;

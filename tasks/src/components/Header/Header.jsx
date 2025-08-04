@@ -1,12 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import s from './Header.module.css'
 import { useNavigate } from 'react-router-dom'
 import { Router } from '../../pages/routes'
 import { SetContext } from '../../context/context'
+import { useOutsideClick } from '../../hooks/modalClose'
 
 export const Header = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState()
+  const menuRef = useRef(null)
 
   const {
     isAuth,
@@ -54,6 +56,12 @@ export const Header = () => {
     }
   }
 
+  const closeMenu = () => {
+    setIsOpen(false)
+  }
+
+  useOutsideClick(menuRef, closeMenu)
+
   return (
     <>
       <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
@@ -68,7 +76,7 @@ export const Header = () => {
         </nav>
       </div>
       {isOpen && (
-        <div className={s.menu}>
+        <div ref={menuRef} className={s.menu}>
           <div className={s.darkTheme}>
             Темный режим{' '}
             <input
