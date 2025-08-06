@@ -92,7 +92,7 @@ export const UserCard = () => {
                   }
                 >
                   <input
-                    checked={!currentTask.common}
+                    readOnly={!currentTask.common}
                     className={s.checkbox}
                     type="checkbox"
                   />
@@ -105,7 +105,7 @@ export const UserCard = () => {
                   }
                 >
                   <input
-                    checked={currentTask.common}
+                    readOnly={currentTask.common}
                     className={s.checkbox}
                     type="checkbox"
                   />

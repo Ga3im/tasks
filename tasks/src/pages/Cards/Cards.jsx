@@ -8,6 +8,8 @@ import { Outlet } from 'react-router-dom'
 import { Filter } from '../../components/Filter/Filter'
 
 export const Cards = () => {
+  const [takenCard, setTakenCard] = useState(null)
+
   const {
     search,
     filterTask,
@@ -40,6 +42,14 @@ export const Cards = () => {
     })
   }, [search])
 
+  const sortTasks = (a, b) => {
+    if (a.order > b.order) {
+      return 1
+    } else {
+      return -1
+    }
+  }
+
   return (
     <>
       <Filter />
@@ -51,16 +61,14 @@ export const Cards = () => {
           ? loadTaskCount.map((i) => {
               return <LoadCard key={i} />
             })
-          : tasks.map((task) => {
+          : tasks.sort(sortTasks).map((task) => {
               return filterTask.commonTasks === filterTask.myTasks ||
                 filterTask.commonTasks === task.common ? (
                 <Card
-                  id={task.id}
+                  task={task}
+                  takenCard={takenCard} 
+                  setTakenCard={setTakenCard}
                   key={task.id}
-                  title={task.title}
-                  description={task.description}
-                  common={task.common}
-                  date={task.date}
                 />
               ) : (
                 ''
