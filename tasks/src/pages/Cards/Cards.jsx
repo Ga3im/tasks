@@ -17,7 +17,7 @@ export const Cards = () => {
     setIsloading,
     isDarkTheme,
     tasks,
-    setTasks,
+    updateTask,
     initialTasks,
   } = useContext(SetContext)
 
@@ -34,12 +34,12 @@ export const Cards = () => {
     tasks.map((i) => {
       if (i.title.toLowerCase().includes(search.toLowerCase())) {
         filteredTasks.push(i)
-        setTasks(filteredTasks)
-      }
-      if (search === '') {
-        setTasks(initialTasks)
+        updateTask(filteredTasks)
       }
     })
+    if (search === '') {
+      updateTask(initialTasks)
+    }
   }, [search])
 
   const sortTasks = (a, b) => {
@@ -66,7 +66,7 @@ export const Cards = () => {
                 filterTask.commonTasks === task.common ? (
                 <Card
                   task={task}
-                  takenCard={takenCard} 
+                  takenCard={takenCard}
                   setTakenCard={setTakenCard}
                   key={task.id}
                 />

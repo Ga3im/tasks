@@ -1,6 +1,6 @@
 @keyframes filterClosing {
   from {
-    height: 30px;
+    height: 50px;
   }
   to {
     height: 0px;
@@ -12,7 +12,7 @@
     height: 0px;
   }
   to {
-    height: 30px;
+    height: 50px;
   }
 }
 
@@ -21,7 +21,7 @@
   justify-content: center;
   color: white;
   gap: 30px;
-  padding: 20px;
+  padding-top: 20px;
   font-size: 20px;
   flex-direction: column;
   align-items: center;
@@ -30,14 +30,19 @@
 .topContent {
   display: flex;
   gap: 20px;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  margin-left: 40px;
 }
 
 .searchContent {
   background-color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
-  margin-left: 50px;
 }
 
 .search {
@@ -60,7 +65,20 @@
   transform: scale(1.05);
 }
 
+.error {
+  text-align: center;
+  padding-top: 5px;
+  width: 100%;
+  border-top: solid 1px #000;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-bottom: 5px;
+  color: red;
+  background-color: #ffffff;
+}
+
 .openFilter {
+  margin-top: 10px;
   width: 15px;
   height: 15px;
   rotate: 45deg;
@@ -73,6 +91,7 @@
 
 .openFilterActive {
   width: 15px;
+  margin-top: 15px;
   height: 15px;
   rotate: 225deg;
   border-bottom: solid 2px;
@@ -85,7 +104,7 @@
 .modalOpen {
   animation-name: filterOpening;
   animation-duration: 0.3s;
-  height: 30px;
+  height: 50px;
 }
 
 .modalClose {

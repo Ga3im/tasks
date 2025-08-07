@@ -66,7 +66,11 @@ export const Header = () => {
   return (
     <>
       <div className={isDarkTheme ? s.wrapperDark : s.wrapper}>
-        <img onClick={logo} src="/kanban-logo.png" className={s.logo} />
+        <img
+          onClick={logo}
+          src={isDarkTheme ? '/logo-dark.png' : '/logo.png'}
+          className={s.logo}
+        />
         <button onClick={addTaskButton} className={s.addTask}>
           Добавить задачу
         </button>

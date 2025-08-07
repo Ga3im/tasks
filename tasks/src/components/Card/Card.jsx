@@ -21,7 +21,6 @@ export const Card = ({ task, takenCard, setTakenCard }) => {
   const handleDragStart = (e, task) => {
     setTakenCard(task)
     console.log(takenCard)
-    console.log('drag', task)
   }
 
   const handleDragLeave = (e) => {
@@ -42,7 +41,6 @@ export const Card = ({ task, takenCard, setTakenCard }) => {
 
     const arr = tasks.map((i) => {
       if (i.id === task.id) {
-        console.log({ ...i, order: takenCard.order })
         return { ...i, order: takenCard.order }
       }
       if (i.id === takenCard.id) {
@@ -51,8 +49,6 @@ export const Card = ({ task, takenCard, setTakenCard }) => {
       return i
     })
     updateTask(arr)
-    setTakenCard(null)
-    console.log('drop', task)
   }
 
   return (
@@ -68,7 +64,7 @@ export const Card = ({ task, takenCard, setTakenCard }) => {
         className={isDarkTheme ? s.wrapperDark : s.wrapper}
       >
         <div className={s.titleContent}>
-          <p className={s.titleText}>{task.title}</p>{' '}
+          <p className={s.titleText}>{task.title}</p>
           {!task.common && <span className={s.commonTasks}></span>}
         </div>
         <p className={s.description}>{task.description}</p>
