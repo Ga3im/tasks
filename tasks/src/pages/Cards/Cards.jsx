@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Card } from '../../components/Card/Card'
 import { SetContext } from '../../context/context'
 import { loadTaskCount, loadTime } from '../Main/Main'
@@ -8,8 +8,18 @@ import { Outlet } from 'react-router-dom'
 import { Filter } from '../../components/Filter/Filter'
 
 export const Cards = () => {
-  const { filterTask, isloading, setIsloading, isDarkTheme, tasks } =
-    useContext(SetContext)
+  const [takenCard, setTakenCard] = useState(null)
+
+  const {
+    search,
+    filterTask,
+    isloading,
+    setIsloading,
+    isDarkTheme,
+    tasks,
+    updateTask,
+    initialTasks,
+  } = useContext(SetContext)
 
   // загрузка задач
   useEffect(() => {
@@ -19,10 +29,30 @@ export const Cards = () => {
     }, loadTime * 1000)
   }, [tasks])
 
+  useEffect(() => {
+    const filteredTasks = []
+    tasks.map((i) => {
+      if (i.title.toLowerCase().includes(search.toLowerCase())) {
+        filteredTasks.push(i)
+        updateTask(filteredTasks)
+      }
+    })
+    if (search === '') {
+      updateTask(initialTasks)
+    }
+  }, [search])
+
+  const sortTasks = (a, b) => {
+    if (a.order > b.order) {
+      return 1
+    } else {
+      return -1
+    }
+  }
+
   return (
     <>
       <Filter />
-
       <Outlet />
       <h1 className={isDarkTheme ? s.titleDark : s.title}>Задачи</h1>
 
@@ -31,16 +61,14 @@ export const Cards = () => {
           ? loadTaskCount.map((i) => {
               return <LoadCard key={i} />
             })
-          : tasks.map((task) => {
+          : tasks.sort(sortTasks).map((task) => {
               return filterTask.commonTasks === filterTask.myTasks ||
                 filterTask.commonTasks === task.common ? (
                 <Card
-                  id={task.id}
+                  task={task}
+                  takenCard={takenCard}
+                  setTakenCard={setTakenCard}
                   key={task.id}
-                  title={task.title}
-                  description={task.description}
-                  common={task.common}
-                  date={task.date}
                 />
               ) : (
                 ''

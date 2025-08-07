@@ -8,7 +8,6 @@ import { UserCard } from './pages/UserCard/UserCard'
 import { Main } from './pages/Main/Main'
 import { Archive } from './pages/Archive/Archive'
 import { Cards } from './pages/Cards/Cards'
-import { UserPage } from './pages/UserPage/UserPage'
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
       <SettingProvider>
         <Routes>
           <Route path={Router.main} element={<Main />}>
-            <Route path={Router.profile} element={<UserPage />} />
             <Route path={Router.archive} element={<Archive />} />
             <Route path={Router.cards} element={<Cards />}>
               <Route path={'/main/tasks/:cardId'} element={<UserCard />} />

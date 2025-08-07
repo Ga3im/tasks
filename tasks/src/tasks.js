@@ -1,30 +1,50 @@
 export const tasksArray = [
   {
     id: 1,
+    order: 1,
     title: 'Питание',
-    description: 'Сьесть яблоко',
+    description: 'Приготвить рулет',
     common: false,
     date: '14.05.2025',
   },
   {
     id: 2,
+    order: 3,
     title: 'Тренировка',
     description: 'Отжиматься 20 раз, 3 подхода',
     common: false,
     date: '14.05.2025',
   },
-   {
+  {
     id: 3,
+    order: 4,
     title: 'Тестовое задание',
     description: 'Реализовать API',
     common: true,
     date: '13.05.2025',
   },
-   {
+  {
     id: 4,
+    order: 6,
     title: 'Дизайн сайта',
     description: 'Сверстать сайт задачи',
     common: true,
     date: '13.05.2025',
+  },
+    {
+    id: 5,
+    order: 5,
+    title: 'Тренировка',
+    description: 'Подтянуться 25 раз',
+    common: false,
+    date: '6.08.25',
+  },
+     {
+    id: 6,
+    order: 3,
+    title: 'Сайт',
+    description: 'Добавить типизацию',
+    common: false,
+    date: '6.08.25',
   },
 ]
