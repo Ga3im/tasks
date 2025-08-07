@@ -47,16 +47,6 @@ export const Header = () => {
     }
   }
 
-  const gotoArchive = () => {
-    if (isArchive) {
-      navigate(Router.cards)
-      setIsArchive(false)
-    } else {
-      navigate(Router.archive)
-      setIsArchive(true)
-    }
-  }
-
   const closeMenu = () => {
     setIsOpen(false)
   }
@@ -91,8 +81,8 @@ export const Header = () => {
               checked={isDarkTheme ? true : false}
             />
           </div>
-          <p className={s.archive} onClick={gotoArchive}>
-            {isArchive ? 'На главную ' : 'Архив'}
+          <p className={s.archive} onClick={() => setIsArchive(!isArchive)}>
+            {isArchive ? 'Все задачи ' : 'Архив'}
           </p>
           <p className={s.authButton} onClick={authButton}>
             {isAuth ? 'Выйти' : 'Войти'}{' '}

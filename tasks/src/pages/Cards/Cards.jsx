@@ -13,6 +13,8 @@ export const Cards = () => {
   const {
     search,
     filterTask,
+    isArchive,
+    archiveTasks,
     isloading,
     setIsloading,
     isDarkTheme,
@@ -61,19 +63,28 @@ export const Cards = () => {
           ? loadTaskCount.map((i) => {
               return <LoadCard key={i} />
             })
-          : tasks.sort(sortTasks).map((task) => {
-              return filterTask.commonTasks === filterTask.myTasks ||
-                filterTask.commonTasks === task.common ? (
+          : isArchive
+            ? archiveTasks.map((i) => (
                 <Card
-                  task={task}
+                  task={i}
                   takenCard={takenCard}
                   setTakenCard={setTakenCard}
-                  key={task.id}
+                  key={i.id}
                 />
-              ) : (
-                ''
-              )
-            })}
+              ))
+            : tasks.sort(sortTasks).map((task) => {
+                return filterTask.commonTasks === filterTask.myTasks ||
+                  filterTask.commonTasks === task.common ? (
+                  <Card
+                    task={task}
+                    takenCard={takenCard}
+                    setTakenCard={setTakenCard}
+                    key={task.id}
+                  />
+                ) : (
+                  ''
+                )
+              })}
       </div>
     </>
   )

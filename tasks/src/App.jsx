@@ -15,7 +15,6 @@ function App() {
       <SettingProvider>
         <Routes>
           <Route path={Router.main} element={<Main />}>
-            <Route path={Router.archive} element={<Archive />} />
             <Route path={Router.cards} element={<Cards />}>
               <Route path={'/main/tasks/:cardId'} element={<UserCard />} />
               <Route path={Router.createTask} element={<CreateTask />} />
